@@ -417,15 +417,6 @@ const App: React.FC = () => {
           <div className="text-xs text-gray-500 font-light font-sans tracking-widest">LABS</div>
         </div>
 
-        {/* Desktop menu */}
-        <div className="hidden md:flex gap-8 text-sm font-light text-gray-700 font-sans tracking-wide">
-          <button className="hover:text-blue-500 transition-colors">Collections</button>
-          <button onClick={() => setIsBuilderOpen(true)} className="hover:text-blue-500 transition-colors">
-            Create
-          </button>
-          <button className="hover:text-blue-500 transition-colors">Quiz</button>
-          <button className="hover:text-blue-500 transition-colors">About</button>
-        </div>
 
         <div className="flex gap-4 items-center">
           <button
@@ -447,14 +438,6 @@ const App: React.FC = () => {
                 {cartCount}
               </span>
             )}
-          </button>
-
-          <button className="hover:scale-110 transition-transform p-1" title="Orders">
-            <Package className="w-5 h-5 text-gray-600 stroke-[1.6]" />
-          </button>
-
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden ml-2">
-            <Menu className="w-6 h-6 text-gray-800" />
           </button>
         </div>
       </nav>
