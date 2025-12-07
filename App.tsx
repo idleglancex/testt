@@ -418,20 +418,7 @@ const App: React.FC = () => {
         </div>
 
 
-        {/* Desktop menu */}
-        <div className="hidden md:flex gap-8 text-sm font-light text-gray-700 font-sans tracking-wide">
-          <button className="hover:text-blue-500 transition-colors">Collections</button>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-500 transition-colors"
-          >
-            Create
-          </a>
-          <button className="hover:text-blue-500 transition-colors">Quiz</button>
-          <button className="hover:text-blue-500 transition-colors">About</button>
-        </div>
+
         <div className="flex gap-4 items-center">
           <button
             onClick={() => setIsAuthOpen(true)}
