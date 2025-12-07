@@ -4,7 +4,7 @@ let cart = [];
 export default function handler(req, res) {
     // CORS headers are handled by Vercel automatically for same-origin,
     // but explicitly setting them doesn't hurt for clarity or specific setups.
-    res.setHeader('Access-Control-Allow-Credentials', true);
+
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader(
