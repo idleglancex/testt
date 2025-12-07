@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pandora Labs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                pink: '#FADADD',
+                rose: '#E6C2C2',
+                blue: '#F0F8FF',
+                dark: '#1A1A1A',
+                gold: '#D4AF37'
+              }
+            },
+            fontFamily: {
+              serif: ['Cinzel', 'serif'],
+              sans: ['Lato', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom scrollbar for Webkit */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d4af37;
+        border-radius: 10px;
+      }
+      
+      body {
+        /* Base background for the site (visible in 3D section) */
+        /* Using Brand Blue (#F0F8FF) transitioning to a very soft pink/white */
+        background: linear-gradient(135deg, #F0F8FF 0%, #FFF5F7 50%, #FFFFFF 100%);
+        overflow-x: hidden;
+      }
+
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      }
+
+      /* Hero Section Specific Gradient */
+      /* Similar tones to body (Blue/Pink) but different mixture (Radial & slightly more concentrated) */
+      .bg-gradient-radial {
+        background: radial-gradient(circle at 50% 40%,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(250, 218, 221, 0.5) 45%, /* Brand Pink with opacity */
+          rgba(225, 240, 255, 0.6) 100%); /* Slightly deeper blue than body */
+      }
+
+      .logo-shimmer {
+        background: linear-gradient(
+          120deg,
+          #93C5FD 0%, /* Blue-300 */
+          #F9A8D4 30%, /* Pink-300 */
+          #FFFFFF 50%,
+          #F9A8D4 70%,
+          #93C5FD 100%
+        );
+        background-size: 250% 250%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shimmer 4s ease-in-out infinite, logoGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes shimmer {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      @keyframes logoGlow {
+        0%, 100% { text-shadow: 0 0 10px rgba(248, 187, 208, 0.5), 0 0 20px rgba(147, 197, 253, 0.3); }
+        50% { text-shadow: 0 0 15px rgba(248, 187, 208, 0.8), 0 0 30px rgba(147, 197, 253, 0.6); }
+      }
+
+      @keyframes crownFloat {
+        0%, 100% { transform: translate(-50%, 0) rotate(-3deg); }
+        50% { transform: translate(-50%, -4px) rotate(3deg); }
+      }
+
+      /* Modal fade-in animasyonu */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .modal-content { animation: fadeIn 0.3s ease-out; }
+
+      /* Cart badge pulse */
+      @keyframes badgePulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+      .cart-badge { animation: badgePulse 2s ease-in-out infinite; }
+
+      /* Custom scrollbar for modals */
+      .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25",
+    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.2",
+    "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.7",
+    "three": "https://aistudiocdn.com/three@^0.181.2",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
