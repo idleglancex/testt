@@ -292,6 +292,8 @@ const products: Product[] = [
 
 const App: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
+  // Fake session state
+  const [user, setUser] = useState<{ email: string } | null>(null);
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
@@ -316,6 +318,7 @@ const App: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  // ... (lines 320-418 excluded)
 
   useEffect(() => {
     if (scrollY > 300 && charms.length === 0) {
@@ -421,11 +424,23 @@ const App: React.FC = () => {
 
         <div className="flex gap-4 items-center">
           <button
-            onClick={() => setIsAuthOpen(true)}
-            className="hover:scale-110 transition-transform p-1"
-            title="Login"
+            onClick={() => {
+              if (user) {
+                const confirmLogout = window.confirm('Are you sure you want to log out?');
+                if (confirmLogout) setUser(null);
+              } else {
+                setIsAuthOpen(true);
+              }
+            }}
+            className="hover:scale-110 transition-transform p-1 relative group"
+            title={user ? 'Logout' : 'Login'}
           >
-            <User className="w-5 h-5 text-gray-600 stroke-[1.6]" />
+            <User className={`w-5 h-5 stroke-[1.6] ${user ? 'text-brand-pink fill-brand-pink/20' : 'text-gray-600'}`} />
+            {user && (
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                Sign Out
+              </span>
+            )}
           </button>
 
           <button
@@ -601,7 +616,7 @@ const App: React.FC = () => {
                     </div>
                     <h3 className="font-serif text-xl font-bold mb-2">{product.name}</h3>
                     <div className="flex justify-between items-center">
-                      <span className="text-brand-gold font-semibold">$199.00</span>
+                      <span className="text-brand-gold font-semibold">$30.00</span>
                       <button className="text-xs uppercase tracking-widest font-bold border-b border-black pb-1 hover:text-brand-pink hover:border-brand-pink transition-colors">
                         View Details
                       </button>
@@ -699,7 +714,7 @@ const App: React.FC = () => {
       {/* Modals */}
 
 
-      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} onLogin={(u) => setUser(u)} />
 
       <CartModal
         isOpen={isCartOpen}
