@@ -292,7 +292,6 @@ const products: Product[] = [
 
 const App: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
