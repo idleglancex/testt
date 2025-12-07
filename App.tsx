@@ -26,7 +26,7 @@ import * as THREE from 'three';
 
 import { Logo } from './components/Logo';
 import { Experience3D } from './components/Experience3D';
-import { CharmBuilder } from './components/CharmBuilder';
+
 import { Quiz } from './components/Quiz';
 import { AuthModal } from './components/AuthModal';
 import { CartModal } from './components/CartModal';
@@ -292,7 +292,8 @@ const products: Product[] = [
 
 const App: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [isBuilderOpen, setIsBuilderOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -418,6 +419,20 @@ const App: React.FC = () => {
         </div>
 
 
+        {/* Desktop menu */}
+        <div className="hidden md:flex gap-8 text-sm font-light text-gray-700 font-sans tracking-wide">
+          <button className="hover:text-blue-500 transition-colors">Collections</button>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-500 transition-colors"
+          >
+            Create
+          </a>
+          <button className="hover:text-blue-500 transition-colors">Quiz</button>
+          <button className="hover:text-blue-500 transition-colors">About</button>
+        </div>
         <div className="flex gap-4 items-center">
           <button
             onClick={() => setIsAuthOpen(true)}
@@ -452,12 +467,9 @@ const App: React.FC = () => {
             className="fixed top-[88px] left-0 right-0 bg-white/80 backdrop-blur-md px-8 py-4 flex flex-col gap-4 text-sm font-light text-gray-700 md:hidden z-40 border-b border-white/50"
           >
             <button className="text-left py-2 hover:text-blue-500 transition">Collections</button>
-            <button
-              onClick={() => setIsBuilderOpen(true)}
-              className="text-left py-2 hover:text-blue-500 transition"
-            >
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-left py-2 hover:text-blue-500 transition">
               Create
-            </button>
+            </a>
             <button className="text-left py-2 hover:text-blue-500 transition">Quiz</button>
             <button className="text-left py-2 hover:text-blue-500 transition">About</button>
           </motion.div>
@@ -502,7 +514,7 @@ const App: React.FC = () => {
       </div>
 
       {/* Section 3: Craft Your Imagination */}
-      <CraftSection onOpenBuilder={() => setIsBuilderOpen(true)} />
+      <CraftSection />
 
       {/* Section 4: Products Grid */}
       <section className="py-24 bg-gradient-to-b from-pink-100 via-white to-blue-50">
@@ -584,21 +596,24 @@ const App: React.FC = () => {
               <p className="text-slate-500 mb-12 font-light">Based on your essence.</p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[1, 2, 3].map(i => (
+                {products.sort(() => 0.5 - Math.random()).slice(0, 3).map(product => (
                   <div
-                    key={i}
+                    key={product.id}
                     className="glass-panel p-6 rounded-2xl hover:shadow-xl transition-shadow cursor-pointer group bg-white/40"
+                    onClick={() => setSelectedProduct(product)}
                   >
                     <div className="h-64 bg-slate-50 rounded-xl mb-6 overflow-hidden relative">
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-32 h-32 rounded-full border-4 border-slate-200 group-hover:border-pink-300 transition-colors" />
                       </div>
                       <img
-                        src={`https://picsum.photos/400/400?random=${i}`}
-                        className="w-full h-full object-cover opacity-60 mix-blend-multiply"
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        onError={(e) => { (e.target as HTMLImageElement).src = product.fallback; }}
                       />
                     </div>
-                    <h3 className="font-serif text-xl font-bold mb-2">The Ethereal Set {i}</h3>
+                    <h3 className="font-serif text-xl font-bold mb-2">{product.name}</h3>
                     <div className="flex justify-between items-center">
                       <span className="text-brand-gold font-semibold">$199.00</span>
                       <button className="text-xs uppercase tracking-widest font-bold border-b border-black pb-1 hover:text-brand-pink hover:border-brand-pink transition-colors">
@@ -696,11 +711,7 @@ const App: React.FC = () => {
       </footer>
 
       {/* Modals */}
-      <CharmBuilder
-        isOpen={isBuilderOpen}
-        onClose={() => setIsBuilderOpen(false)}
-        onAddCharm={handleAddCharm}
-      />
+
 
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
 

@@ -1,11 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-interface CraftSectionProps {
-  onOpenBuilder: () => void;
-}
+// No props needed
+interface CraftSectionProps { }
 
-export const CraftSection: React.FC<CraftSectionProps> = ({ onOpenBuilder }) => {
+export const CraftSection: React.FC<CraftSectionProps> = () => {
   return (
     <section
       id="craft-your-imagination"
@@ -13,7 +12,7 @@ export const CraftSection: React.FC<CraftSectionProps> = ({ onOpenBuilder }) => 
     >
       <div className="max-w-6xl mx-auto grid gap-12 lg:grid-cols-2 items-center px-6">
         {/* Left side: text content (English) */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -34,7 +33,7 @@ export const CraftSection: React.FC<CraftSectionProps> = ({ onOpenBuilder }) => 
         </motion.div>
 
         {/* Right side: video + CTA button */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -43,7 +42,7 @@ export const CraftSection: React.FC<CraftSectionProps> = ({ onOpenBuilder }) => 
         >
           <div className="w-full aspect-video rounded-[2rem] overflow-hidden shadow-2xl shadow-pink-200/60 ring-1 ring-white/50 relative">
             <video
-              src="video.mp4" 
+              src="video.mp4"
               className="w-full h-full object-cover"
               autoPlay
               loop
@@ -54,12 +53,14 @@ export const CraftSection: React.FC<CraftSectionProps> = ({ onOpenBuilder }) => 
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
           </div>
 
-          <button
-            onClick={onOpenBuilder}
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-12 py-5 bg-slate-900 text-white text-lg font-serif tracking-wide rounded-full shadow-xl shadow-slate-900/20 hover:shadow-pink-300/40 hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
           >
             Hayalindeki charm, şimdi gerçek oluyor
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>
