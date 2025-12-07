@@ -453,7 +453,7 @@ const App: React.FC = () => {
             className="fixed top-[88px] left-0 right-0 bg-white/80 backdrop-blur-md px-8 py-4 flex flex-col gap-4 text-sm font-light text-gray-700 md:hidden z-40 border-b border-white/50"
           >
             <button className="text-left py-2 hover:text-blue-500 transition">Collections</button>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-left py-2 hover:text-blue-500 transition">
+            <a href="https://viewer-psi-six.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-left py-2 hover:text-blue-500 transition">
               Create
             </a>
             <button className="text-left py-2 hover:text-blue-500 transition">Quiz</button>
