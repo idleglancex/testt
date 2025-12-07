@@ -54,7 +54,7 @@ export const CraftSection: React.FC<CraftSectionProps> = () => {
           </div>
 
           <a
-            href="https://youtube.com"
+            href="https://viewer-psi-six.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="px-12 py-5 bg-slate-900 text-white text-lg font-serif tracking-wide rounded-full shadow-xl shadow-slate-900/20 hover:shadow-pink-300/40 hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
